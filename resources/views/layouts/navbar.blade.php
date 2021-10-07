@@ -1,4 +1,7 @@
 <!-- BEGIN: Main Menu-->
+
+@include('sweetalert::alert')
+
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" style="top: 0;" data-scroll-to-active="true">
     <div class="navbar-header">
       <ul class="nav navbar-nav flex-row">

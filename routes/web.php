@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::group(['middleware' => 'adminsession'], function () {
+// Route::group(['middleware' => 'adminsession'], function () {
 
     Route::get('/admin', function () {
         $students = App\Models\Student::count();
@@ -34,6 +34,12 @@ Route::group(['middleware' => 'adminsession'], function () {
     Route::resource('group', 'App\Http\Controllers\GroupController');
 
     Route::resource('admin_students', 'App\Http\Controllers\StudentController');
+
+    Route::get('admin_students-_get_register', 'App\Http\Controllers\StudentController');
+
+    Route::get('admin_students-_register', 'App\Http\Controllers\StudentController');
+
+
 
     Route::resource('classes', 'App\Http\Controllers\ClassesController');
 
@@ -54,7 +60,7 @@ Route::group(['middleware' => 'adminsession'], function () {
     Route::get('/getsubject/{id}', 'App\Http\Controllers\LevelController@getsubject');
     Route::get('/getgroup/{id}', 'App\Http\Controllers\StudentController@getgroup');
     Route::get('/getgroup_subject/{id}/', 'App\Http\Controllers\ClassesController@getgroup');
-});
+// });
 
 
 

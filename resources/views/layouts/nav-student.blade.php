@@ -1,3 +1,6 @@
+
+@include('sweetalert::alert')
+
 <div class="dashboard-header d-flex justify-content-between align-items">
         <a href="/" class="dashboard-brand">
         <img src="/website/images/logo.png" width="120px">
