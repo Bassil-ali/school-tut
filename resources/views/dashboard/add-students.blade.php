@@ -99,13 +99,13 @@
                                             </div>
                                         </div>
 
-                                                                                <div class="col-xl-4 col-md-6 col-12 mb-1">
+                                        <div class="col-xl-4 col-md-6 col-12 mb-1">
                                             <div class="form-group">
                                                 <label for="basicInput">النوع</label>
                                                 <select name="gender" class="form-control" id="basicSelect">
-                                            <option value="1">ذكر</option>
-                                            <option value="2">أنثى</option>
-                                        </select>
+                                                    <option value="1">ذكر</option>
+                                                    <option value="2">أنثى</option>
+                                                </select>
                                             </div>
                                         </div>
 

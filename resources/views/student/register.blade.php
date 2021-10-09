@@ -29,19 +29,17 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form method="POST" action="{{route('user.check')}}" class="login100-form validate-form">
+				<form method="POST" action="{{route('user.register')}}" class="login100-form validate-form">
                     {{ csrf_field() }}
 					<span class="login100-form-title p-b-43">
-						مرحبا بك , قم بتسجيل الدخول للمتابعة
+						مرحبا بك , قم بانشاء حساب جديد للمتابعه
 					</span>
 
-
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input name="code" class="input100" type="text" name="email">
+					<div class="wrap-input100 validate-input" data-validate = "Valid name is required: ex@abc.xyz">
+						<input name="name" class="input100" type="text" name="name">
 						<span class="focus-input100"></span>
-						<span class="label-input100">كود الطالب</span>
+						<span class="label-input100">اسم  الطالب</span>
 					</div>
-
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
 						<input name="password" class="input100" type="password" name="pass">
@@ -49,14 +47,48 @@
 						<span class="label-input100">كلمة المرور</span>
 					</div>
 
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input name="city" class="input100" type="text" name="pass">
+						<span class="focus-input100"></span>
+						<span class="label-input100">المحافظة</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input name="phone" class="input100" type="number" name="phone">
+						<span class="focus-input100"></span>
+						<span class="label-input100">رقم الهاتف</span>
+					</div>
+
+					<div class="col-xl-12 col-md-12 col-12">
+                        <div class="form-group">
+                            <label for="basicInput" class="text-right">النوع</label>
+                            <select name="gender" class="form-control" id="basicSelect">
+                                <option value="1">ذكر</option>
+                                <option value="2">أنثى</option>
+                            </select>
+                        </div>
+                    </div>
+
+					<div class="col-xl-12 col-md-612 col-12 mb-1">
+                        <div class="form-group">
+                            <label for="basicInput">الصف الدراسي</label>
+                            <select name="level"  onclick="console.log($(this).val())" onchange="console.log('change is firing')" class="form-control" id="basicSelect">
+                            <option value="" selected disabled>-- حدد الصف الدراسي --</option>
+                                @foreach ($levels as $level)
+                            	    <option value="{{$level->id}}">{{$level->level_name}}</option>
+                                @endforeach
+                    		</select>
+                        </div>
+                    </div>
+
 
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
-							تسجيل الدخول
+							انشاء حساب
 						</button>
 					</div>
 
-					<p class="text-right" style="font-size: 50px"><a href="{{ route('user.register') }}">إنشاء حساب جديد   </a></p>
+					<p class="text-right" style="font-size: 50px"><a href="{{ route('user.login') }}">لدي حساب من قبل</a></p>
 
 				</form>
 				

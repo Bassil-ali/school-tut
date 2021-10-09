@@ -35,9 +35,9 @@ use Illuminate\Support\Facades\Route;
 
     Route::resource('admin_students', 'App\Http\Controllers\StudentController');
 
-    Route::get('admin_students-_get_register', 'App\Http\Controllers\StudentController');
+    // Route::get('admin_students-_get_register', 'App\Http\Controllers\StudentController');
 
-    Route::get('admin_students-_register', 'App\Http\Controllers\StudentController');
+    // Route::get('admin_students-_register', 'App\Http\Controllers\StudentController');
 
 
 
@@ -89,10 +89,15 @@ Route::group(['middleware' => 'usersession'], function () {
 
 Route::post('/exam_result', 'App\Http\Controllers\ResultController@examresult')->name('exam.result');
 
+////login and register studant
 Route::get('/user/login', 'App\Http\Controllers\UserLoginController@userLogin')->name('user.login');
+
+Route::get('/user/register', 'App\Http\Controllers\UserLoginController@user_register')->name('user.register');
 
 Route::post('/user/check', 'App\Http\Controllers\UserLoginController@checkUser')->name('user.check');
 
+Route::post('/user/register', 'App\Http\Controllers\UserLoginController@check_register')->name('user.register');
+////login and register studant
 
 Route::get('/admin/login', 'App\Http\Controllers\AdminLoginController@userLogin')->name('admin.login');
 
