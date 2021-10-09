@@ -35,7 +35,8 @@ use Illuminate\Support\Facades\Route;
 
     Route::resource('admin_students', 'App\Http\Controllers\StudentController');
 
-    // Route::get('admin_students-_get_register', 'App\Http\Controllers\StudentController');
+    Route::get('bill_admin', 'App\Http\Controllers\BillController@index')->name('bill.admin.index');
+    Route::post('bill.admin.status', 'App\Http\Controllers\BillController@status')->name('bill.admin.status');
 
     // Route::get('admin_students-_register', 'App\Http\Controllers\StudentController');
 
@@ -82,6 +83,14 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/enterExam/{id}', 'App\Http\Controllers\ResultController@enterExam')->name('exam.enter');
 
     Route::post('/showresult', 'App\Http\Controllers\ResultController@showresult')->name('exam.show_result');
+    
+    //route bill
+    Route::get('/bill', 'App\Http\Controllers\ResultController@bill')->name('bill');
+
+    Route::post('/bill', 'App\Http\Controllers\ResultController@bill_store')->name('bill.store');
+
+    Route::delete('/bill/{id}', 'App\Http\Controllers\ResultController@bill_destroy')->name('bill.destroy');
+
 });
 
 

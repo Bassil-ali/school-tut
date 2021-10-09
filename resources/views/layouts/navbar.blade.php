@@ -17,13 +17,24 @@
         </li>
         <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">الاعدادات</span><i data-feather="more-horizontal"></i>
         </li>
-        <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="settings"></i><span class="menu-title text-truncate" data-i18n="Invoice">الاعدادات العامة</span></a>
+        <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="settings"></i>
+            <span class="menu-title text-truncate" data-i18n="Invoice">الاعدادات العامة</span></a>
           <ul class="menu-content">
-            <li><a class="d-flex align-items-center" href="{{route('level.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="الصفوف الدراسية">الصفوف الدراسية</span></a>
+
+            <li><a class="d-flex align-items-center" href="{{route('level.index')}}"><i data-feather="circle"></i>
+              <span class="menu-item text-truncate" data-i18n="الصفوف الدراسية">الصفوف الدراسية</span></a>
             </li>
-          <li><a class="d-flex align-items-center" href="{{route('subject.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="">المواد الدراسية</span></a>
+
+            <li><a class="d-flex align-items-center" href="{{route('subject.index')}}"><i data-feather="circle"></i>
+              <span class="menu-item text-truncate" data-i18n="">المواد الدراسية</span></a>
             </li>
-            <li><a class="d-flex align-items-center" href="{{route('group.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="المجاميع الدراسية">المجاميع الدراسية</span></a>
+
+            <li><a class="d-flex align-items-center" href="{{route('group.index')}}"><i data-feather="circle"></i>
+                <span class="menu-item text-truncate" data-i18n="المجاميع الدراسية">المجاميع الدراسية</span></a>
+            </li>
+
+            <li><a class="d-flex align-items-center" href="{{ route('bill.admin.index') }}"><i data-feather="circle"></i>
+                <span class="menu-item text-truncate" data-i18n="الفواتير">الفواتير</span></a>
             </li>
 
           </ul>

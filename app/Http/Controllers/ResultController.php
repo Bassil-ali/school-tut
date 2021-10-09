@@ -8,10 +8,13 @@ use App\Models\Exam;
 use App\Models\FinalExam;
 use App\Models\Result;
 use App\Models\Test;
+use App\Models\Student;
+use App\Models\Bill;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class ResultController extends Controller
 {
@@ -149,4 +152,44 @@ class ResultController extends Controller
         session()->flash('result', $getresult);
         return view('student.exam-student', compact('exams'));
     }
-}
+
+    public function bill()
+    {
+        return view('student.bill');
+    }//ene of bill
+
+    public function bill_store(Request $request)
+    {
+        $code    = session()->get('user');
+
+        $student = Student::where('id', $code)->first();
+
+        $request_data               = $request->except('image');
+        $request_data['name']       = $student->name;
+        $request_data['phone']      = $student->phone;
+        $request_data['image']      = $request->file('image')->store('bill','public_uploads');
+        $request_data['student_id'] = $code;
+
+        Bill::create($request_data);
+
+        session()->flash('success', 'تم الاضافه بنجاح');
+
+        return redirect()->back();
+
+    }//ene of bill_store
+
+    public function bill_destroy($id)
+    {
+        $bill = Bill::find($id);
+
+        Storage::disk('public_uploads')->delete($bill->image);
+
+        $bill->delete();
+
+        session()->flash('success', 'تم الاضافه بنجاح');
+
+        return redirect()->back();
+
+    }//ene of bill_store
+
+}//end of controller
