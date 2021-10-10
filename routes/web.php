@@ -35,6 +35,10 @@ use Illuminate\Support\Facades\Route;
 
     Route::resource('admin_students', 'App\Http\Controllers\StudentController');
 
+    Route::resource('delivery_work', 'App\Http\Controllers\DeliveryWorkController');
+    
+    Route::resource('home_work', 'App\Http\Controllers\HomeWorkController');
+
     Route::get('bill_admin', 'App\Http\Controllers\BillController@index')->name('bill.admin.index');
     Route::post('bill.admin.status', 'App\Http\Controllers\BillController@status')->name('bill.admin.status');
 

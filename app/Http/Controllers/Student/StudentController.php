@@ -11,6 +11,7 @@ use App\Models\FinalExam;
 use App\Models\Quiz;
 use App\Models\Result;
 use App\Models\Test;
+use App\Models\HomeWork;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -36,8 +37,11 @@ class StudentController extends Controller
 
     public function lesson($id)
     {
-        $class = Classes::findOrFail($id);
-        return view('student.lesson-video', compact('class'));
+        $class     = Classes::findOrFail($id);
+
+        $home_work = HomeWork::where('class_id',$class->id)->get();
+
+        return view('student.lesson-video', compact('class','home_work'));
     }
 
     public function showexam()

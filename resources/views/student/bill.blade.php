@@ -64,7 +64,7 @@
             <div class="col-9">
                 <div class="card" style="padding: 20px;">
                     <div class="table-responsive">
-                        @if (App\Models\Bill::count() > 0)
+                        @if (App\Models\Bill::where('student_id',session()->get('user'))->count() > 0)
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -76,7 +76,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (App\Models\Bill::all() as $data)
+                                @foreach (App\Models\Bill::where('student_id',session()->get('user'))->get(); as $data)
                                     
                                     <tr>
                                         <td>{{ $data->note }}</td>

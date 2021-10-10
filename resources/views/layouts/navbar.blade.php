@@ -61,13 +61,29 @@
 
           <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="settings"></i><span class="menu-title text-truncate" data-i18n="Invoice">التعليم الالكتروني</span><span class="badge mr-1 ml-auto badge-light-success badge-pill">جديد</span></a>
           <ul class="menu-content">
-            <li><a class="d-flex align-items-center" href="{{route('classes.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="">المحاضرات والدروس</span></a>
+            <li>
+              <a class="d-flex align-items-center" href="{{route('classes.index')}}">
+                <i data-feather="circle"></i>
+                <span class="menu-item text-truncate" data-i18n="">المحاضرات والدروس</span></a>
             </li>
-          <li><a class="d-flex align-items-center" href="{{route('exam.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="">الامتحانات والاختبارات</span></a>
+            <li>
+              <a class="d-flex align-items-center" href="{{route('exam.index')}}"><i data-feather="circle"></i>
+                <span class="menu-item text-truncate" data-i18n="">الامتحانات والاختبارات</span></a>
             </li>
-            <li><a class="d-flex align-items-center" href="{{route('quiz.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="">بنك الاسئلة</span></a>
+            <li>
+              <a class="d-flex align-items-center" href="{{route('quiz.index')}}">
+                <i data-feather="circle"></i>
+                <span class="menu-item text-truncate" data-i18n="">بنك الاسئلة</span></a>
             </li>
-            <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="">الواجب المنزلي</span><span class="badge mr-1 ml-auto badge-light-warning badge-pill">قريبا</span></a>
+            <li>
+              <a class="d-flex align-items-center" href="{{ route('home_work.index') }}"><i data-feather="circle"></i>
+                <span class="menu-item text-truncate" data-i18n="">الواجب المنزلي</span>
+                <span class="badge mr-1 ml-auto badge-light-warning badge-pill">قريبا</span></a>
+            </li>
+            <li>
+              <a class="d-flex align-items-center" href="{{ route('home_work.index') }}"><i data-feather="circle"></i>
+                <span class="menu-item text-truncate" data-i18n="">الواجب المنزلي</span>
+                <span class="badge mr-1 ml-auto badge-light-warning badge-pill">قريبا</span></a>
             </li>
 
 

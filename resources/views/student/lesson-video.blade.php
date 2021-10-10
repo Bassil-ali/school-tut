@@ -91,10 +91,12 @@
         <div class="download-box" style="margin: 12px;
     width: auto!important;display: inline-block;">
 
-            <a style="    color: #fff!important;" href="{{asset('uploads/notes/classes')}}/{{$class->note}}">
-        <i class="fas fa-download download-icon"></i>
-        تحميل مذكرة المراجعة
-</a>
+            @foreach ($home_work as $work)
+                <a style="color: #fff!important;" href="{{ $work->file_path }}" download="{{ $work->file_path }}">
+                    <i class="fas fa-download download-icon"></i>
+                    تحميل مذكرة المراجعة
+                </a>
+            @endforeach
         </div>
         @endif
 
