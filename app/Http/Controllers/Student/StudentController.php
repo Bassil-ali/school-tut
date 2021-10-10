@@ -12,6 +12,7 @@ use App\Models\Quiz;
 use App\Models\Result;
 use App\Models\Test;
 use App\Models\HomeWork;
+use App\Models\DeliveryWork;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -41,7 +42,18 @@ class StudentController extends Controller
 
         $home_work = HomeWork::where('class_id',$class->id)->get();
 
-        return view('student.lesson-video', compact('class','home_work'));
+        $studant_work = DeliveryWork::where('studant',session()->get('user'))->get();
+
+        // $home_work = HomeWork::where('class_id',$home_work->id)->get();
+
+        if (!$home_work) {
+            
+            $home_work = '0';
+
+        }
+
+        return view('student.lesson-video', compact('class','home_work','studant_work'));
+
     }
 
     public function showexam()

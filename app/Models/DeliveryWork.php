@@ -16,4 +16,17 @@ class DeliveryWork extends Model
         return $this->belongsTo(HomeWork::class,'home_work_id');
     }//end of home_work
 
+    public function studanting()
+    {
+        return $this->belongsTo(Student::class,'studant');
+    }
+
+    protected $appends = ['file_path'];
+
+    public function getFilePathAttribute()
+    {
+        return asset('uploads/' . $this->delivery_file);
+
+    }//end of get image path
+
 }//end of mode

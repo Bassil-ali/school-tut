@@ -7,6 +7,7 @@ use App\Models\Exam;
 use App\Models\Group;
 use App\Models\Subject;
 use App\Models\Level;
+use App\Models\DeliveryWork;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -75,7 +76,30 @@ class HomeWorkController extends Controller
      */
     public function show(HomeWork $homeWork)
     {
-        //
+        $homeWork = DeliveryWork::where('home_work_id',$homeWork->id)->get();
+        // return $homeWork;
+        return view('dashboard.home_work.show', compact('homeWork'));
+    }
+
+    public function status(Request $request)
+    {
+        $id = DeliveryWork::find($request->id);
+
+        $id->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back();
+
+    }
+
+    public function home_work_delvery($id)
+    {
+        $id = DeliveryWork::find($id);
+
+        $id->delete();
+
+        return redirect()->back();
     }
 
     /**

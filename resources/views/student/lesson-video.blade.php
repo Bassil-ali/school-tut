@@ -89,16 +89,79 @@
           مذكرات الشرح
         </div>
         <div class="download-box" style="margin: 12px;width: auto!important;display: inline-block;">
-            @foreach ($home_work as $work)
-                <br>
-                <div class="video-title--num">
-                  مذكرات الشرح : {{ $work->work_file_noty }}
-                </div>
-                <a style="color: #fff!important;" href="{{ $work->file_path }}" download="{{ $work->file_path }}">
-                    <i class="fas fa-download download-icon"></i>
-                    تحميل مذكرة المراجعة
-                </a>
-            @endforeach
+
+            @if ($home_work > '0')
+                
+                @foreach ($home_work as $work)
+                    <br>
+                    <div class="video-title--num">
+                      مزكره : {{ $work->work_file_noty }}
+                    </div>
+                    <a class="video-title--num py-2 mb-2" style="color: #fff!important;" href="{{ $work->file_path }}" download="{{ $work->file_path }}">
+                        <i class="fas fa-download download-icon"></i>
+                        تحميل مذكرة المراجعة
+                    </a>
+                    <div class="video-title--num mt-2">
+                      وقت التسليم : {{ $work->time }}
+                    </div>
+                @endforeach
+
+                <table class="table table-bordered" style="color:#fff">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">الحاله</th>
+                      <th scope="col">ملحوظه</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($studant_work as $index=>$data)
+
+                    <tr>
+                      <th>{{ $index+1 }}</th>
+                      <th>{{ $data->status == '1' ? 'تم التسليم' : 'لم يتم التسليم'}}</th>
+                      <th>{{ $data->delivery_file_noty }}</th>
+                    </tr>
+                        
+                    @endforeach
+                  </tbody>
+                </table>
+
+                <form action="{{ route('delivery_work.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="col-xl-12 col-md-6 col-12 mb-1">
+                        <div class="form-group">
+                            <label>ملحوظة</label>
+                            <input type="text" name="delivery_file_noty" class="form-control bg-transparent" placeholder="ملحوظة">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12 col-md-6 col-12 mb-1">
+                        <label>إرفاق ملف الواجب</label>
+                        <input class="form-control bg-transparent" required type="file" name="delivery_file" placeholder="Default input">
+                    </div>
+
+                    <div class="col-xl-12 col-md-6 col-12 mb-1">
+                        <label>تحديد المجموعة</label>
+                        <select name="home_work_id" required class="form-control bg-transparent">
+                            @foreach ($home_work as $group)
+                                <option style="color:#fff" value="{{$group->id}}">{{$group->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-xl-12 col-md-6 col-12 my-3">
+                        <button class="video-title--num">تم</button>
+                    </div>
+
+                </form>
+
+            @else 
+
+
+            @endif
+
         </div>
         @endif
 

@@ -180,6 +180,9 @@
                                                 <a class="btn btn-success waves-effect waves-float waves-light" href="{{ route('home_work.edit',$exam->id) }}">
                                                     <i data-feather='edit'></i>
                                                 </a>
+                                                <a class="btn btn-success waves-effect waves-float waves-light" href="{{ route('home_work.show',$exam->id) }}">
+                                                    <i data-feather='edit'></i>
+                                                </a>
                                                 <a class="btn btn-warning waves-effect waves-float waves-light" download="{{ $exam->file_path }}" href="{{ $exam->file_path }}">
                                                     <i data-feather='edit'></i>
                                                 </a>
@@ -251,9 +254,8 @@
                         <label for="basicSelect">تحديد المجموعة</label>
                         <select name="group" id="group" class="form-control" id="basicSelect">
                             @foreach ($groups as $group)
-                            <option value="{{$group->id}}">{{$group->group_name}}</option>
+                                <option value="{{$group->id}}">{{$group->group_name}}</option>
                             @endforeach
-
                         </select>
                     </div>
 

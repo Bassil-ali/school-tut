@@ -38,6 +38,8 @@ use Illuminate\Support\Facades\Route;
     Route::resource('delivery_work', 'App\Http\Controllers\DeliveryWorkController');
     
     Route::resource('home_work', 'App\Http\Controllers\HomeWorkController');
+    Route::post('home_work/status', 'App\Http\Controllers\HomeWorkController@status')->name('home_work.status');
+    Route::delete('home_work_delvery.destroy/{id}', 'App\Http\Controllers\HomeWorkController@home_work_delvery')->name('home_work_delvery.destroy');
 
     Route::get('bill_admin', 'App\Http\Controllers\BillController@index')->name('bill.admin.index');
     Route::post('bill.admin.status', 'App\Http\Controllers\BillController@status')->name('bill.admin.status');
@@ -94,6 +96,9 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::post('/bill', 'App\Http\Controllers\ResultController@bill_store')->name('bill.store');
 
     Route::delete('/bill/{id}', 'App\Http\Controllers\ResultController@bill_destroy')->name('bill.destroy');
+
+    //route delivery_work
+    Route::post('/delivery_work.store', 'App\Http\Controllers\WorkController@store')->name('delivery_work.store');
 
 });
 
