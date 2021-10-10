@@ -88,10 +88,12 @@
         <div class="video-title--num">
           مذكرات الشرح
         </div>
-        <div class="download-box" style="margin: 12px;
-    width: auto!important;display: inline-block;">
-
+        <div class="download-box" style="margin: 12px;width: auto!important;display: inline-block;">
             @foreach ($home_work as $work)
+                <br>
+                <div class="video-title--num">
+                  مذكرات الشرح : {{ $work->work_file_noty }}
+                </div>
                 <a style="color: #fff!important;" href="{{ $work->file_path }}" download="{{ $work->file_path }}">
                     <i class="fas fa-download download-icon"></i>
                     تحميل مذكرة المراجعة
