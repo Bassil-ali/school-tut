@@ -9,7 +9,7 @@ class BillController extends Controller
 {
     public function index()
     {
-        $bills = Bill::all();
+        $bills = Bill::whenSearch(request()->search)->latest()->paginate(10);
 
         return view('dashboard.bills',compact('bills'));
     }

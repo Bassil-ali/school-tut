@@ -18,7 +18,8 @@ class GroupController extends Controller
     {
         $levels = Level::all();
         $subjects = Subject::all();
-        $groups = Group::all();
+        $groups = Group::whenSearch(request()->search)->latest()->paginate(10);
+
         return view('dashboard.groups', compact('levels', 'subjects', 'groups'));
     }
 

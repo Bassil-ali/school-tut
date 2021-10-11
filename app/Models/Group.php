@@ -20,4 +20,15 @@ class Group extends Model
     {
         return $this->belongsTo(Subject::class);
     }
-}
+
+    public function scopeWhenSearch($query , $search) 
+    {
+        return $query->when($search, function ($q) use ($search) {
+
+            return $q->where('group_name' , 'like', "%$search%")
+            ->orWhere('group_description', 'like', "%$search%");
+            
+        });
+    }//end ofscopeWhenSearch
+    
+}//end of model

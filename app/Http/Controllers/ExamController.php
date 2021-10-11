@@ -24,7 +24,8 @@ class ExamController extends Controller
         $levels = Level::all();
         $subjects = Subject::all();
         $groups = Group::all();
-        $exams = Exam::all();
+        $exams = Exam::whenSearch(request()->search)->latest()->paginate(10);
+
         return view('dashboard.exams', compact('levels', 'subjects', 'groups', 'exams'));
     }
 

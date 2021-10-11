@@ -23,5 +23,16 @@ class HomeWork extends Model
         return asset('uploads/' . $this->work_file);
 
     }//end of get image path
+
+    public function scopeWhenSearch($query , $search) 
+    {
+        return $query->when($search, function ($q) use ($search) {
+
+            return $q->where('name' , 'like', "%$search%")
+            ->orWhere('time', 'like', "%$search%")
+            ->orWhere('work_file_noty', 'like', "%$search%");
+            
+        });
+    }//end ofscopeWhenSearch
     
 }//end of model

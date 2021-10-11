@@ -24,7 +24,9 @@ class HomeWorkController extends Controller
         $subjects = Subject::all();
         $groups = Group::all();
         $exams = Exam::all();
-        return view('dashboard.home_work.index', compact('levels', 'subjects', 'groups', 'exams'));
+        $home_work = HomeWork::whenSearch(request()->search)->latest()->paginate(10);
+
+        return view('dashboard.home_work.index', compact('levels', 'subjects', 'groups', 'exams','home_work'));
     }
 
     /**

@@ -116,6 +116,7 @@
                     <input type="hidden" name="exam_id" value="{{$exam->id}}">
                     <button style="background: #333;" type="submit" class="btn__exam">اظهار النتيجة</button>
                 </form>
+                <a href="{{route('index_exam',$exam->id)}}"><div class="btn__exam">اظار الاجوبه</div></a>
                 @endif
                 @else
                 <a href="{{route('exam.enter',$exam->id)}}"><div class="btn__exam">دخول للامتحان</div></a>

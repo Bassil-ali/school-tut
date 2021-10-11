@@ -15,4 +15,15 @@ class Subject extends Model
     {
         return $this->belongsTo(Level::class);
     }
-}
+
+    public function scopeWhenSearch($query , $search) 
+    {
+        return $query->when($search, function ($q) use ($search) {
+
+            return $q->where('subject_name' , 'like', "%$search%")
+            ->orWhere('subject_description', 'like', "%$search%");
+            
+        });
+    }//end ofscopeWhenSearch
+
+}//end of model

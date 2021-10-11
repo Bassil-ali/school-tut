@@ -30,4 +30,15 @@ class Exam extends Model
     {
         return $this->hasOne(FinalExam::class, 'exam_id');
     }
-}
+
+    public function scopeWhenSearch($query , $search) 
+    {
+        return $query->when($search, function ($q) use ($search) {
+
+            return $q->where('name' , 'like', "%$search%")
+            ->orWhere('created_at', 'like', "%$search%");
+            
+        });
+    }//end ofscopeWhenSearch
+    
+}//end of model

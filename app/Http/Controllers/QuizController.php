@@ -19,7 +19,9 @@ class QuizController extends Controller
     {
         $levels = Level::all();
         $subjects = Subject::all();
-        $quizzes = Quiz::all();
+        // $quizzes = Quiz::all();
+        $quizzes = Quiz::whenSearch(request()->search)->latest()->paginate(10);
+        
         return view('dashboard.bank-quiz', compact('levels', 'subjects', 'quizzes'));
     }
 

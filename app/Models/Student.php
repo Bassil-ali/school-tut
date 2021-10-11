@@ -25,4 +25,18 @@ class Student extends Model
     {
         return $this->belongsToMany(Subject::class, 'subject_student');
     }
-}
+
+    public function scopeWhenSearch($query , $search) 
+    {
+        return $query->when($search, function ($q) use ($search) {
+
+            return $q->where('name' , 'like', "%$search%")
+            ->orWhere('city', 'like', "%$search%")
+            ->orWhere('password', 'like', "%$search%")
+            ->orWhere('gender', 'like', "%$search%")
+            ->orWhere('phone', 'like', "%$search%");
+            
+        });
+    }//end ofscopeWhenSearch
+
+}//end of model

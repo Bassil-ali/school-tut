@@ -133,7 +133,7 @@
                     <div class="col-xl-12 col-md-6 col-12 mb-1">
                         <div class="form-group">
                             <label>ملحوظة</label>
-                            <input type="text" name="delivery_file_noty" class="form-control bg-transparent" placeholder="ملحوظة">
+                            <input type="text" name="delivery_file_noty" class="form-control bg-transparent text-light" placeholder="ملحوظة">
                         </div>
                     </div>
 
@@ -144,7 +144,7 @@
 
                     <div class="col-xl-12 col-md-6 col-12 mb-1">
                         <label>تحديد المجموعة</label>
-                        <select name="home_work_id" required class="form-control bg-transparent">
+                        <select name="home_work_id" required class="form-control bg-transparent text-light">
                             @foreach ($home_work as $group)
                                 <option style="color:#fff" value="{{$group->id}}">{{$group->name}}</option>
                             @endforeach

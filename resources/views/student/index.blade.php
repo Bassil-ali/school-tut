@@ -26,6 +26,7 @@
 @php
         $student_id = Session::get('user');
         $groups = App\Models\Collection::where('student_id', $student_id)->get();
+        $password = App\Models\Student::where('id', $student_id)->first();
         $groups_id = [];
         foreach ($groups as $group) {
             $groups_id[] = $group->group_id;
@@ -42,6 +43,7 @@
                 <div class="exam-title" style="background-image: url(https://kreativdev.com/edus/assets/images/counter-bg-3.png);text-align:right">
                 <h4>المحاضرات والدروس الخاصة بك</h4>
                 <p>الدروس الجديدة يتم إضافتها بشكل دوري على هذه الصفحة ، تابعنا لاستكمال باقي دروس المنهج</p>
+                <p>البينات الخاصه  تسجيل الدخول  : كلمة المرور : {{ Session::get('user') }} | رقم الطالب {{ $password->password }} </p>
                 </div>
                 <div class="container">
                  <div class="row ">
@@ -71,19 +73,18 @@
                              </div>
                          </div>
                      </div>
-                         <div class="col-lg-3">
-                         <div class="lesson--card" style="    border-radius: 9px;
-    margin-top: 35px;">
-                <div class="card" style="    overflow: hidden;padding: 28px;text-align: center;font-size: 19px;border: none;background: #333;color: #fff;">
-                         <i style="    font-size: 40px;" class="fas fas fa-book"></i>
-                         <a style="color: #fff!important;
-    font-size: 16px;
-    font-weight: bold;" href="#">الواجبات</a>
-                         </div></div></div>
-                                                  <div class="col-lg-3">
-                         <div class="lesson--card" style="    border-radius: 9px;
-    margin-top: 35px;">
-                <div class="card" style="    overflow: hidden;padding: 28px;text-align: center;font-size: 19px;border: none;background: #333;color: #fff;">
+                     <div class="col-lg-3">
+                         <div class="lesson--card" style="    border-radius: 9px;margin-top: 35px;">
+                            <div class="card" style="overflow: hidden;padding: 28px;text-align: center;
+                                    font-size: 19px;border: none;background: #333;color: #fff;">
+                                <i style="font-size: 40px;" class="fas fas fa-book"></i>
+                                <a style="color: #fff!important;font-size: 16px;font-weight: bold;" href="{{ route('work.index') }}">الواجبات</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                         <div class="lesson--card" style="border-radius: 9px;margin-top: 35px;">
+                            <div class="card" style="overflow: hidden;padding: 28px;text-align: center;font-size: 19px;border: none;background: #333;color: #fff;">
                          <i style="    font-size: 40px;" class="fas fas fa-question"></i>
                          <a style="color: #fff!important;
     font-size: 16px;

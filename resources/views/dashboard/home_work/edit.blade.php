@@ -127,7 +127,7 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                              <label for="basicSelect">وقت التسليم</label>
-                                                <input type="time" value="{{$homeWork->time}}" name="time" id="helperText" class="form-control" placeholder="اسم الواجب">
+                                                <input type="date" value="{{$homeWork->time}}" name="time" id="helperText" class="form-control" placeholder="اسم الواجب">
                                             </div>
                                         </div>
 

@@ -98,6 +98,37 @@
         </button>
     </div>
 @endif
+
+
+                    <nav class="header-navbar navbar navbar-expand-lg align-items-center navbar-light navbar-shadow" style="margin-bottom:30px">
+                      <div class="navbar-container d-flex content">
+                        <div class="bookmark-wrapper d-flex align-items-center">
+                          <ul class="nav navbar-nav d-xl-none">
+                            <li class="nav-item"><a class="nav-link">
+                            </li>
+                          </ul>
+                        </div>
+                        <ul class="nav navbar-nav align-items-center ml-auto">
+                          <li class="nav-item d-none d-lg-block">
+                              
+                          </li>
+                          <li class="nav-item dropdown dropdown-user">
+                            <form action="{{ route('quiz.index') }}" method="get">
+                                <div class="row">
+                                    <div class="form-group col-10">
+                                        <input type="text" name="search" id="helperText" 
+                                        class="form-control" value="{{ request()->search }}" placeholder="ادخل السؤال هنا">
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-float waves-light">بحث</button>
+                                    </div>
+                                </div>
+                            </form>
+                          </li>
+                        </ul>
+                      </div>
+                    </nav>
+
                     <div class="row">
                         <div class="col-4">
                             <form method="POST" action="{{route('quiz.store')}}" enctype="multipart/form-data">
@@ -128,9 +159,9 @@
                                         </select>
                                     </div>
                                             </div>
-                                          <div class="col-12">
-                                         <div class="form-group">
-                                             <label for="basicSelect">السؤال</label>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="basicSelect">السؤال</label>
                                                 <input type="text" name="quest" id="helperText" class="form-control" placeholder="ادخل السؤال هنا">
                                             </div>
                                         </div>
@@ -187,7 +218,7 @@
                                     </div>
                                 </div>
                                 <div class="col-3">
-                                <button type="submit" class="btn btn-primary waves-effect waves-float waves-light">اضافة</button>
+                                    <button type="submit" class="btn btn-primary waves-effect waves-float waves-light">اضافة</button>
                                 </div>
                                 <br>
                             </div>

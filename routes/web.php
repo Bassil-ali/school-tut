@@ -72,8 +72,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
-
 Route::group(['middleware' => 'usersession'], function () {
 
     Route::get('/', function () {
@@ -88,6 +86,8 @@ Route::group(['middleware' => 'usersession'], function () {
 
     Route::get('/enterExam/{id}', 'App\Http\Controllers\ResultController@enterExam')->name('exam.enter');
 
+    Route::get('/index_exam/{id}', 'App\Http\Controllers\ResultController@index_exam')->name('index_exam');
+
     Route::post('/showresult', 'App\Http\Controllers\ResultController@showresult')->name('exam.show_result');
     
     //route bill
@@ -99,6 +99,8 @@ Route::group(['middleware' => 'usersession'], function () {
 
     //route delivery_work
     Route::post('/delivery_work.store', 'App\Http\Controllers\WorkController@store')->name('delivery_work.store');
+
+    Route::get('/work.index', 'App\Http\Controllers\WorkController@work_index')->name('work.index');
 
 });
 
@@ -124,6 +126,14 @@ Route::post('/admin/check', 'App\Http\Controllers\AdminLoginController@checkUser
 Route::post('/logout', 'App\Http\Controllers\LogoutController@logout')->name('logout');
 
 Route::post('/user/logout', 'App\Http\Controllers\LogoutController@userlogout')->name('user.logout');
+
+Route::get('/clear', function () {
+    Artisan::call('route:cache');
+    Artisan::call('config:cache');
+    Artisan::call('cache:clear');
+
+    return 'cache';
+});
 
 Route::get('/route-cache', function () {
     $exitCode = Artisan::call('route:cache');

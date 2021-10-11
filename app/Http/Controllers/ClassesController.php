@@ -22,7 +22,8 @@ class ClassesController extends Controller
         $levels = Level::all();
         $subjects = Subject::all();
         $groups = Group::all();
-        $classes = Classes::all();
+        $classes = Classes::whenSearch(request()->search)->latest()->paginate(10);
+
         return view('dashboard.classes', compact('levels', 'subjects', 'groups', 'classes'));
     }
 

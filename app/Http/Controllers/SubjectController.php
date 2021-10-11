@@ -16,7 +16,9 @@ class SubjectController extends Controller
     public function index()
     {
         $levels = Level::all();
-        $subjects = Subject::all();
+
+        $subjects = Subject::whenSearch(request()->search)->latest()->paginate(10);
+
         return view('dashboard.subject', compact('levels', 'subjects'));
     }
 

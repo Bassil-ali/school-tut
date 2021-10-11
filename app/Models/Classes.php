@@ -26,4 +26,17 @@ class Classes extends Model
     {
         return $this->belongsTo(Group::class);
     }
-}
+
+    public function scopeWhenSearch($query , $search) 
+    {
+        return $query->when($search, function ($q) use ($search) {
+
+            return $q->where('name' , 'like', "%$search%")
+            ->orWhere('note', 'like', "%$search%")
+            ->orWhere('video', 'like', "%$search%")
+            ->orWhere('description', 'like', "%$search%");
+            
+        });
+    }//end ofscopeWhenSearch
+
+}//end of model

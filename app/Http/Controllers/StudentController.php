@@ -20,8 +20,9 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $students = Student::all();
+    {   
+        $students = Student::whenSearch(request()->search)->latest()->paginate(10);
+
         return view('dashboard.students', compact('students'));
     }
 

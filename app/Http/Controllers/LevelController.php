@@ -15,7 +15,8 @@ class LevelController extends Controller
      */
     public function index()
     {
-        $levels = Level::all();
+        $levels = Level::whenSearch(request()->search)->latest()->paginate(10);
+
         return view('dashboard.level', compact('levels'));
     }
 

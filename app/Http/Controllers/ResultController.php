@@ -18,6 +18,34 @@ use Illuminate\Support\Facades\Storage;
 
 class ResultController extends Controller
 {
+
+    public function index_exam($id)
+    {
+        $exam_id = $id;
+        $student_id = Session::get('user');
+        $quest = Test::where('exam_id', $exam_id)->get();
+        $total_questions = $quest->count();
+        $final_exam = FinalExam::where('exam_id', $exam_id)->get()->first();
+        $join = Carbon::now();
+        $exam_period = $final_exam->exam_period;
+        $end  = Carbon::now()->addMinutes($exam_period);
+
+        $student_exist = Result::where('student_id', $student_id)->where('exam_id', $exam_id)->get();
+
+        if ($student_exist->count() == 0) {
+            Result::create([
+                'student_id' => $student_id,
+                'exam_id' => $exam_id,
+                'total' => $total_questions,
+                'join' => $join,
+                'end'   => $end,
+            ]);
+        }
+        $exam = Exam::findOrFail($id);
+
+        return view('student.answers',compact('exam','quest'));
+    }
+
     public function enterExam($id)
     {
         $exam_id = $id;

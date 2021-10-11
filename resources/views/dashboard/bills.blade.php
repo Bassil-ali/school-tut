@@ -96,6 +96,36 @@
     </div>
 @endif
                     
+
+                    <nav class="header-navbar navbar navbar-expand-lg align-items-center navbar-light navbar-shadow" style="margin-bottom:30px">
+                      <div class="navbar-container d-flex content">
+                        <div class="bookmark-wrapper d-flex align-items-center">
+                          <ul class="nav navbar-nav d-xl-none">
+                            <li class="nav-item"><a class="nav-link">
+                            </li>
+                          </ul>
+                        </div>
+                        <ul class="nav navbar-nav align-items-center ml-auto">
+                          <li class="nav-item d-none d-lg-block">
+                              
+                          </li>
+                          <li class="nav-item dropdown dropdown-user">
+                            <form action="{{ route('bill.admin.index') }}" method="get">
+                                <div class="row">
+                                    <div class="form-group col-10">
+                                        <input type="text" name="search" id="helperText" 
+                                        class="form-control" value="{{ request()->search }}" placeholder="ادخل السؤال هنا">
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-float waves-light">بحث</button>
+                                    </div>
+                                </div>
+                            </form>
+                          </li>
+                        </ul>
+                      </div>
+                    </nav>
+
                         <div class="col-12">
                         <div class="card" style="padding: 20px;">
                             <div class="table-responsive">
@@ -103,6 +133,7 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>اسم الطالب</th>
                                             <th>الوصف</th>
                                             <th>صوره</th>
                                             <th>المبلغ</th>
@@ -110,9 +141,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (App\Models\Bill::all() as $data)
+                                        @foreach ($bills as $data)
                                             
                                             <tr>
+                                                <td>{{ $data->studant->name }}</td>
                                                 <td>{{ $data->note }}</td>
                                                 <td>
                                                     <img src="{{ $data->image_path }}" width="40">

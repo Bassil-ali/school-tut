@@ -26,6 +26,16 @@ class Quiz extends Model
         return $this->hasMany(Answer::class);
     }
 
+    public function scopeWhenSearch($query , $search) 
+    {
+        return $query->when($search, function ($q) use ($search) {
+
+            return $q->where('quest' , 'like', "%$search%")
+            ->orWhere('id', 'like', "%$search%");
+            
+        });
+    }//end ofscopeWhenSearch
+
     // public function test()
     // {
     //     return $this->belongsTo(Test::class);

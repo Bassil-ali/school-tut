@@ -80,12 +80,6 @@
                 <span class="menu-item text-truncate" data-i18n="">الواجب المنزلي</span>
                 <span class="badge mr-1 ml-auto badge-light-warning badge-pill">قريبا</span></a>
             </li>
-            <li>
-              <a class="d-flex align-items-center" href="{{ route('home_work.index') }}"><i data-feather="circle"></i>
-                <span class="menu-item text-truncate" data-i18n="">الواجب المنزلي</span>
-                <span class="badge mr-1 ml-auto badge-light-warning badge-pill">قريبا</span></a>
-            </li>
-
 
           </ul>
         </li>
