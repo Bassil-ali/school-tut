@@ -51,13 +51,20 @@
                         <a style="color: #fff!important;font-size: 16px;font-weight: bold;" href="{{ route('bill') }}">
                          <div class="lesson--card" style="border-radius: 9px;margin-top: 35px;">
                             <div class="card" style="overflow: hidden;padding: 28px;text-align: center;font-size: 19px;border: none;background: #333;color: #fff;">
-                                <img src="{{ asset('app-assets/images/svg/bill.SVG') }}" height="40px" style="color: #fff;">
+                                <i style="font-size: 40px;" class="fas fa-money-bill"></i>
                                 دفع فاتورة
                              </div>
                          </div>
                         </a>
                      </div>
-
+                    <div class="col-lg-3">
+                         <div class="lesson--card" style="    border-radius: 9px;margin-top: 35px;">
+                            <div class="card" style="    overflow: hidden;padding: 28px;text-align: center;font-size: 19px;border: none;background: linear-gradient(to right, #fc5644, #ff6f3f, #ff863d, #ff9b3e, #feb045);color: #fff;">
+                             <i style="font-size: 40px;" class="fas fa-comment"></i>
+                             <a style="color: #fff!important;font-size: 16px;font-weight: bold;" href="{{ route('chat.index') }}">المحدثات</a>
+                             </div>
+                         </div>
+                     </div>
                      <div class="col-lg-3">
                          <div class="lesson--card" style="    border-radius: 9px;margin-top: 35px;">
                             <div class="card" style="    overflow: hidden;padding: 28px;text-align: center;font-size: 19px;border: none;background: linear-gradient(to right, #fc5644, #ff6f3f, #ff863d, #ff9b3e, #feb045);color: #fff;">

@@ -102,6 +102,10 @@ Route::group(['middleware' => 'usersession'], function () {
 
     Route::get('/work.index', 'App\Http\Controllers\WorkController@work_index')->name('work.index');
 
+    Route::get('/chat', 'App\Http\Controllers\ChatController@index')->name('chat.index');
+    Route::get('/chat_user/{id}', 'App\Http\Controllers\ChatController@show')->name('chat.user.index');
+    Route::post('/chat_message', 'App\Http\Controllers\ChatController@store')->name('chat.message.store');
+
 });
 
 
