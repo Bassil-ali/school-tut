@@ -24,10 +24,7 @@ class ChatAdminController extends Controller
         $admins     = AdminLogin::where('email',session()->get('admin'))->first();
         $uui        ='0';
 
-        $chats_studant   = Chat::where('studant_id',$id)->where('message_user_id',$id)->get();
-        $chats_admin     = Chat::where('admin_id',$admins->id)->where('message_user_id',$admins->id)->where('studant_id',$id)->get();
-
-        return view('dashboard.chat',compact('admins','chats_admin','chats_studant','student','uui'));
+        return view('dashboard.chat',compact('admins','student','uui','id'));
 
     }//end of show
 

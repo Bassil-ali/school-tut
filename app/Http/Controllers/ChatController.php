@@ -24,10 +24,10 @@ class ChatController extends Controller
         $admins      = AdminLogin::find($id);
         $uui         ='0';
         // return $student->id;
-        $chats_studant   = Chat::where('studant_id',$student->id)->where('admin_id',$admins->id)->get();
-        $chats_admin     = Chat::where('admin_id',$admins->id)->get();
+        $chats_studant   = Chat::where('studant_id',$student->id)->where('admin_id',$admins->id)->orderBy('created_at')->get();
+        $chats_admin     = Chat::where('admin_id',$admins->id)->orderBy('created_at')->get();
 
-        return view('student.chats',compact('admins','chats_admin','chats_studant','student','uui'));
+        return view('student.chats',compact('admins','chats_admin','chats_studant','student','uui','id'));
 
     }//end of show
 

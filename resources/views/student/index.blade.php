@@ -4,41 +4,40 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" >
-        <meta name="keywords" >
-
-
+        <meta name="description">
+        <meta name="keywords">
 
         <link rel="stylesheet" href="{{asset('website/css/bootstrap.css')}}">
 
-  <!-- Fonts and Icons -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+        <!-- Fonts and Icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
 
-  <!-- CSS Files -->
-  <link rel="stylesheet" href="{{asset('website/css/style.css')}}" type="text/css">
-  <style>
-     .dashboard{background:none!important;} 
-  </style>
-            </head>
-            <body>
-            @include('layouts.nav-student');
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="{{asset('website/css/style.css')}}" type="text/css">
+        <style>
+            .dashboard{background:none!important;} 
+        </style>
+        </head>
+        <body>
 
-@php
-        $student_id = Session::get('user');
-        $groups = App\Models\Collection::where('student_id', $student_id)->get();
-        $password = App\Models\Student::where('id', $student_id)->first();
-        $groups_id = [];
-        foreach ($groups as $group) {
-            $groups_id[] = $group->group_id;
-        }
+        @include('layouts.nav-student');
 
-        $group_string = implode(',', $groups_id);
+            @php
+                    $student_id = Session::get('user');
+                    $groups = App\Models\Collection::where('student_id', $student_id)->get();
+                    $password = App\Models\Student::where('id', $student_id)->first();
+                    $groups_id = [];
+                    foreach ($groups as $group) {
+                        $groups_id[] = $group->group_id;
+                    }
 
-        $array = explode(',', $group_string);
+                    $group_string = implode(',', $groups_id);
 
-    $classes = App\Models\Classes::whereIn('group_id', $array)->get();
-@endphp
-<div class="dashboard">
+                    $array = explode(',', $group_string);
+
+                $classes = App\Models\Classes::whereIn('group_id', $array)->get();
+            @endphp
+        <div class="dashboard">
      
                 <div class="exam-title" style="background-image: url(https://kreativdev.com/edus/assets/images/counter-bg-3.png);text-align:right">
                 <h4>المحاضرات والدروس الخاصة بك</h4>

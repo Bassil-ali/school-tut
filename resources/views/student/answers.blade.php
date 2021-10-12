@@ -73,13 +73,13 @@
 
                         	    @if ($answer->status == 'correct')
                         		    	
-                        	    @endif
-
                         	    <div>
                         	        <input type="radio" {{ $answer->status == 'correct' ? 'checked' : '' }} name="answer{{$x}}" value="{{$answer->id}}"/>
                         	        <label style="color: {{ $answer->status == 'correct' ? '#28a745' : '' }}; 
                                         font-weight: {{ $answer->status == 'correct' ? '' : 'bold' }};">{{$answer->answer}}</label>
                         	    </div>
+                        	    @endif
+
                             @endforeach
                         @endforeach
 

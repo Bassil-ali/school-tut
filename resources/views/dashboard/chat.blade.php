@@ -113,18 +113,20 @@
         <div class="messages-box">
           <div class="list-group rounded-0">
             @foreach (App\Models\Student::all() as $data)
-              <a href="{{ route('chat.admin.show',$data->id) }}" class="list-group-item list-group-item-action text-white rounded-0">
-                <div class="media"><img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
-                  <div class="media-body ml-4">
-                    <div class="d-flex align-items-center justify-content-between mb-1">
-                      <h6 class="mb-0">{{ $data->name }}</h6><small class="small font-weight-bold">c</small>
-                      {{-- <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">25 Dec</small> --}}
+              @if ($data->studant->count() > 0 )
+                
+                <a href="{{ route('chat.admin.show',$data->id) }}" class="list-group-item list-group-item-action text-white rounded-0">
+                  <div class="media"><img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
+                    <div class="media-body ml-4">
+                      <div class="d-flex align-items-center justify-content-between mb-1">
+                        <h6 class="mb-0">{{ $data->name }}</h6><small class="small font-weight-bold">c</small>
+                        {{-- <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">25 Dec</small> --}}
+                      </div>
+                      {{-- <p class="font-italic mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p> --}}
                     </div>
-                    {{-- <p class="font-italic mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p> --}}
                   </div>
-                </div>
-              </a>
-
+                </a>
+              @endif
             @endforeach
 
           </div>
@@ -136,34 +138,20 @@
       <div class="px-4 py-5 chat-box bg-white">
         <!-- Sender Message-->
         @if ($uui == '0')
-          @foreach ($chats_studant as $chat)
+        @foreach (App\Models\chat::where('studant_id',$id)->where('admin_id',$admins->id)->get() as $chat)
+
+        <li class="chat-{{ $chat->message_user_id == $id ? 'right' : 'left'  }}">
           
-            <div class="media w-50 mb-3">
-              <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
-              <div class="media-body ml-3">
-                <div class="bg-light rounded py-2 px-3 mb-2">
-                  <p class="text-small mb-0 text-muted">{{ $chat->message }}</p>
+            <div class="media w-50 {{ $chat->message_user_id == $id ? 'ml-auto' : ''  }} mb-3">
+              <div class="media-body {{ $chat->message_user_id == $id ? '' : 'ml-3'  }}">
+                <div class="bg-{{ $chat->message_user_id == $id ? 'primary' : 'light'  }} rounded py-2 px-3 mb-2">
+                  <p class="text-small mb-0 {{ $chat->message_user_id == $id ? 'text-white' : 'text-muted'  }}">{{ $chat->message }}</p>
                 </div>
                 <p class="small text-muted">{{ $chat->created_at }}</p>
               </div>
             </div>
-
-          @endforeach
-        @endif
-
-        @if ($uui == '0')
-          @foreach ($chats_admin as $data)
-
-            <div class="media w-50 ml-auto mb-3">
-              <div class="media-body">
-                <div class="bg-primary rounded py-2 px-3 mb-2">
-                  <p class="text-small mb-0 text-white">{{ $data->message }}</p>
-                </div>
-                <p class="small text-muted">{{ $data->created_at }}</p>
-              </div>
-            </div>
-
-          @endforeach
+          
+        @endforeach
         @endif
 
       </div>

@@ -39,4 +39,9 @@ class Student extends Model
         });
     }//end ofscopeWhenSearch
 
+    public function studant()
+    {
+        return $this->hasMany(Chat::class,'studant_id');
+    }//end of studant
+
 }//end of model

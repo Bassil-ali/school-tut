@@ -11,12 +11,37 @@
     
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 	{{-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> --}}
 	<!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
+    {{-- @include('layouts.nav-student') --}}
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        @php
+                $student_id = Session::get('user');
+                $groups = App\Models\Collection::where('student_id', $student_id)->get();
+                $password = App\Models\Student::where('id', $student_id)->first();
+                $groups_id = [];
+                foreach ($groups as $group) {
+                    $groups_id[] = $group->group_id;
+                }
+
+                $group_string = implode(',', $groups_id);
+
+                $array = explode(',', $group_string);
+
+            $classes = App\Models\Classes::whereIn('group_id', $array)->get();
+        @endphp
+{{-- <div class="dashboard">
+
+    <div class="exam-title" style="background-image: url(https://kreativdev.com/edus/assets/images/counter-bg-3.png);text-align:right">
+        <h4>المحاضرات والدروس الخاصة بك</h4>
+        <p>الدروس الجديدة يتم إضافتها بشكل دوري على هذه الصفحة ، تابعنا لاستكمال باقي دروس المنهج</p>
+        <p>البينات الخاصه  تسجيل الدخول  : كلمة المرور : {{ Session::get('user') }} | رقم الطالب {{ $password->password }} </p>
+    </div>
+
+</div> --}}
 <div class="container">
 
     <!-- Page header start -->
@@ -82,95 +107,23 @@
                             </div>
                             <div class="chat-container">
                                 <ul class="chat-box chatContainerScroll">
-                                	@if ($uui == '0')
-	                                	@if ($chats_admin->count() > 0)
+                                    @if ($uui == '0')
+                                    @foreach (App\Models\chat::where('studant_id',$password->id)->where('admin_id',$id)->get() as $chat)
 
-	                                		@foreach ($chats_admin as $chat)
-	                                			@if ($chat->message_user_id == $admins->id)
-			                                    <li class="chat-left">
-			                                        <div class="chat-avatar">
-			                                            <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-			                                            <div class="chat-name">{{ $chat->message_user_id }}</div>
-			                                        </div>
-			                                        <div class="chat-text">
-			                                            <br>{{ $chat->message }}</div>
-			                                        <div class="chat-hour">{{ $chat->created_at }} <span class="fa fa-check-circle"></span></div>
-			                                    </li>
-	                                			@endif
-
-	                                		@endforeach
-	                                		
-	                                	@else
-	                                	@endif
-                                	@endif
-                                	@if ($uui == '0')
-	                                	@if ($chats_studant->count() > 0)
-
-	                                		@foreach ($chats_studant as $chat)
-	                                			@if ($chat->message_user_id == $student->id)
-				                                    <li class="chat-right">
-				                                        <div class="chat-hour">{{ $chat->created_at }}<span class="fa fa-check-circle"></span></div>
-				                                        <div class="chat-text">{{ $chat->message_user_id }}
-				                                            <br>{{ $chat->message }}</div>
-				                                        <div class="chat-avatar">
-				                                            <img src="https://www.bootdey.com/img/Content/avatar/avatar5.png" alt="Retail Admin">
-				                                            <div class="chat-name">Joyse</div>
-				                                        </div>
-				                                    </li>
-	                                			@endif
-	                                		@endforeach
-	                                		
-	                                	@else
-	                                	@endif
-                                	@endif
-                                    {{-- <li class="chat-left">
-                                        <div class="chat-avatar">
-                                            <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-                                            <div class="chat-name">Russell</div>
-                                        </div>
-                                        <div class="chat-text">Are we meeting today?
-                                            <br>Project has been already finished and I have results to show you.</div>
-                                        <div class="chat-hour">08:57 <span class="fa fa-check-circle"></span></div>
-                                    </li>
-                                    <li class="chat-right">
-                                        <div class="chat-hour">08:59 <span class="fa fa-check-circle"></span></div>
-                                        <div class="chat-text">Well I am not sure.
-                                            <br>I have results to show you.</div>
-                                        <div class="chat-avatar">
-                                            <img src="https://www.bootdey.com/img/Content/avatar/avatar5.png" alt="Retail Admin">
-                                            <div class="chat-name">Joyse</div>
-                                        </div>
-                                    </li>
-                                    <li class="chat-left">
-                                        <div class="chat-avatar">
-                                            <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-                                            <div class="chat-name">Russell</div>
-                                        </div>
-                                        <div class="chat-text">The rest of the team is not here yet.
-                                            <br>Maybe in an hour or so?</div>
-                                        <div class="chat-hour">08:57 <span class="fa fa-check-circle"></span></div>
-                                    </li>
-                                    <li class="chat-right">
-                                        <div class="chat-hour">08:59 <span class="fa fa-check-circle"></span></div>
-                                        <div class="chat-text">Have you faced any problems at the last phase of the project?</div>
-                                        <div class="chat-avatar">
-                                            <img src="https://www.bootdey.com/img/Content/avatar/avatar4.png" alt="Retail Admin">
-                                            <div class="chat-name">Jin</div>
-                                        </div>
-                                    </li>
-                                    <li class="chat-left">
-                                        <div class="chat-avatar">
-                                            <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-                                            <div class="chat-name">Russell</div>
-                                        </div>
-                                        <div class="chat-text">Actually everything was fine.
-                                            <br>I'm very excited to show this to our team.</div>
-                                        <div class="chat-hour">07:00 <span class="fa fa-check-circle"></span></div>
-                                    </li> --}}
+                                        <li class="chat-{{ $chat->message_user_id == $password->id ? 'right' : 'left'  }}">
+                                            <div class="chat-avatar">
+                                                <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
+                                                <div class="chat-name">{{ $password->name }}</div>
+                                            </div>
+                                            <div class="chat-text">
+                                                <br>{{ $chat->message }}</div>
+                                            <div class="chat-hour">{{ $chat->created_at }} <span class="fa fa-check-circle"></span></div>
+                                        </li>
+                                        
+                                    @endforeach
+                                    @endif
                                 </ul>
-                                @if ($uui == '1')
-                                		
-                            	@else
+                                @if ($uui == '0')
                                 <div class="form-group mt-3 mb-0">
                                 	<form action="{{ route('chat.message.store') }}" method="POST">
                                 		@csrf
