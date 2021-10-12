@@ -87,8 +87,18 @@
          <li class=" navigation-header"><span data-i18n="">الادارة</span><i data-feather="more-horizontal"></i>
         </li>
         
-        <li class=" nav-item"><a class="d-flex align-items-center" href="https://www.facebook.com/Online.edu.eg/"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Invoice">الدعم الفني</span></a>
-</li>
+        <li class=" nav-item">
+          <a class="d-flex align-items-center" href="https://www.facebook.com/Online.edu.eg/">
+            <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Invoice">الدعم الفني</span>
+          </a>
+        </li>
+
+        <li class=" nav-item">
+          <a class="d-flex align-items-center" href="{{ route('chat.admin.index') }}">
+            <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Invoice">المحدثات</span>
+          </a>
+        </li>
+
       </ul>
     </div>
   </div>

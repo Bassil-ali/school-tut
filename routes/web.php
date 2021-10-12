@@ -63,12 +63,17 @@ use Illuminate\Support\Facades\Route;
     Route::post('/store-quiz-exam', 'App\Http\Controllers\ExamController@storequizexam')->name('store.quiz_exam');
 
     Route::get('/report/{id}', 'App\Http\Controllers\StudentController@report')->name('student.report');
+
     // routes for filter
     Route::get('/getsubject/{id}', 'App\Http\Controllers\LevelController@getsubject');
     Route::get('/getgroup/{id}', 'App\Http\Controllers\StudentController@getgroup');
     Route::get('/getgroup_subject/{id}/', 'App\Http\Controllers\ClassesController@getgroup');
-// });
 
+    // routes for filter
+    Route::get('/chat_admin', 'App\Http\Controllers\ChatAdminController@index')->name('chat.admin.index');
+    Route::get('/chat_admin_studant/{id}', 'App\Http\Controllers\ChatAdminController@show')->name('chat.admin.show');
+    Route::post('/chat_message_admin', 'App\Http\Controllers\ChatAdminController@store')->name('chat.message.admin.store');
+// });
 
 
 
